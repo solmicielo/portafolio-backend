@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+
+@RestController
 public class SkillController {
     
     @Autowired
@@ -29,19 +32,19 @@ public class SkillController {
         return skillServ.verSkills();
     }
     
-    @GetMapping ("/buscar/skill")
+    @GetMapping ("/skill/buscar/{id}")
     @ResponseBody
     public Skill buscarSkill (@PathVariable Long id) {
         return skillServ.buscarSkill(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/skill/delete/{id}")
     public void borrarSkill (@PathVariable Long id){
         skillServ.borrarSkill(id);
     
     }
     
-    @PutMapping("/editar/{id}")
+    @PutMapping("/skill/editar")
     public Skill editarSkill (@RequestBody Skill skill){  
       
        skillServ.editarSkill(skill);

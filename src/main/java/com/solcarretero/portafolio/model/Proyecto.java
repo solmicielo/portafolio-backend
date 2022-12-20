@@ -17,8 +17,8 @@ public class Proyecto {
     
     // Primary Key ----------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     //-----------Atributos----------------------
     @NotNull
@@ -48,7 +48,7 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public Proyecto(int id, String titulo, String urlImg, String urlLiven, String urlRepositorio, Long persona) {
+    public Proyecto(Long id, String titulo, String urlImg, String urlLiven, String urlRepositorio, Long persona) {
         this.id = id;
         this.titulo = titulo;
         this.urlImg = urlImg;
@@ -56,6 +56,8 @@ public class Proyecto {
         this.urlRepositorio = urlRepositorio;
         this.persona = persona;
     }
+
+    
 
     
     

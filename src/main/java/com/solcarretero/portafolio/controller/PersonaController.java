@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@RestController
 public class PersonaController {
     
     @Autowired
@@ -28,26 +29,24 @@ public class PersonaController {
     @GetMapping ("/ver/personas")
     @ResponseBody
     public List<Persona> verPersonas () {
-        return persoServ.verPersona();
+        return persoServ.verPersonas();
     }
     
-    @GetMapping ("/buscar/persona")
+    @GetMapping ("/persona/buscar/{id}")
     @ResponseBody
     public Persona buscarProyecto (@PathVariable Long id) {
         return persoServ.buscarPersona(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/persona/delete/{id}")
     public void borrarPersona (@PathVariable Long id){
         persoServ.borrarPersona(id);
     
     }
     
-   @PutMapping("/editar/{id}")
-   public Persona editarPersona (@RequestBody Persona pers){  
-      
-       persoServ.editarPersona(pers);
-       
+   @PutMapping("/persona/editar")
+   public Persona editarPersona (@RequestBody Persona pers){        
+       persoServ.editarPersona(pers);       
        return pers;
        
    }   

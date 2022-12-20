@@ -1,9 +1,7 @@
 package com.solcarretero.portafolio.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,13 +20,13 @@ public class Persona {
     
     // Primary Key ----------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     //-----------Atributos----------------------
     @NotNull
     @Size(min = 1, max= 100, message = "Debe tener entre 1 y 100 caracteres")
-    private String nombreCompleto;
+    private String nombre_completo;
     
     @NotNull
     @Size(min = 1, max= 75, message = "Debe tener entre 1 y 75 caracteres")
@@ -37,23 +35,23 @@ public class Persona {
     @Lob
     @NotNull
     @Size(min = 1, max= 2500, message = "Debe tener entre 1 y 2500 caracteres")
-    private String sobreMi;
+    private String sobre_mi;
     
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
-    private String urlFoto; 
+    private String url_foto; 
         
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
-    private String urlLinkedin;
+    private String url_linkedin;
         
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
-    private String urlGithub;
+    private String url_github;
         
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
-    private String urlCurriculum;
+    private String url_curriculum;
         
     @NotNull
     @Size(min = 1, max= 100, message = "Debe tener entre 1 y 100 caracteres")
@@ -65,44 +63,44 @@ public class Persona {
     
     //-----------Relaciones ----------------------
     
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="persona")
-    @JsonProperty(access = Access.WRITE_ONLY)
+    @OneToMany( mappedBy="persona")    
     private List <Experiencia> experiencias = new ArrayList<>();    
     
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="persona")
-    @JsonProperty(access = Access.WRITE_ONLY)
-    private List<Formacion> educacion;
+    @OneToMany( mappedBy="persona")    
+    private List<Formacion> educacion= new ArrayList<>();
     
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="persona")
-    @JsonProperty(access = Access.WRITE_ONLY)
-    private List<Skill> skills;
+    @OneToMany( mappedBy="persona")    
+    private List<Skill> skills= new ArrayList<>();
     
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="persona") 
-    @JsonProperty(access = Access.WRITE_ONLY)
-    private List<Habilidad> habilidades;
+    @OneToMany( mappedBy="persona")     
+    private List<Habilidad> habilidades = new ArrayList<>();
     
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="persona")
-    @JsonProperty(access = Access.WRITE_ONLY)    
-    private List<Proyecto> proyectos;
+    @OneToMany( mappedBy="persona")        
+    private List<Proyecto> proyectos = new ArrayList<>();
     
     //------Constructores----------------------
 
     public Persona() {
     }
 
-    public Persona(int id, String nombreCompleto, String profesion, String sobreMi, String urlFoto, String urlLinkedin, String urlGithub, String urlCurriculum, String correo, String telefono) {
+    public Persona(Long id, String nombre_completo, String profesion, String sobre_mi, String url_foto, String url_linkedin, String url_github, String url_curriculum, String correo, String telefono) {
         this.id = id;
-        this.nombreCompleto = nombreCompleto;
+        this.nombre_completo = nombre_completo;
         this.profesion = profesion;
-        this.sobreMi = sobreMi;
-        this.urlFoto = urlFoto;
-        this.urlLinkedin = urlLinkedin;
-        this.urlGithub = urlGithub;
-        this.urlCurriculum = urlCurriculum;
+        this.sobre_mi = sobre_mi;
+        this.url_foto = url_foto;
+        this.url_linkedin = url_linkedin;
+        this.url_github = url_github;
+        this.url_curriculum = url_curriculum;
         this.correo = correo;
         this.telefono = telefono;
-        
     }
+
+    
+
+    
+
+   
     
     
     

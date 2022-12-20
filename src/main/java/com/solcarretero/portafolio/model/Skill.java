@@ -19,8 +19,8 @@ public class Skill {
     
      // Primary Key ----------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     //-----------Atributos----------------------
     @NotNull
@@ -42,12 +42,14 @@ public class Skill {
     public Skill() {
     }
 
-    public Skill(int id, String nombreSkill, int porcentaje, Long persona) {
+    public Skill(Long id, String nombreSkill, int porcentaje, Long persona) {
         this.id = id;
         this.nombreSkill = nombreSkill;
         this.porcentaje = porcentaje;
         this.persona = persona;
     }
+
+    
 
     
     

@@ -20,8 +20,8 @@ public class Habilidad {
     
     // Primary Key ----------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private  Long id;
     
     //-----------Atributos----------------------
     @NotNull
@@ -43,15 +43,13 @@ public class Habilidad {
     public Habilidad() {
     }
 
-    public Habilidad(int id, String nombreHabilidad, int porcentaje, Long persona) {
+    public Habilidad(Long id, String nombreHabilidad, int porcentaje, Long persona) {
         this.id = id;
         this.nombreHabilidad = nombreHabilidad;
         this.porcentaje = porcentaje;
         this.persona = persona;
     }
-
-    
-    
+ 
     
     
 }

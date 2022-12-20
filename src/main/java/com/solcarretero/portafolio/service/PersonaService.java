@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 public class PersonaService implements IPersonaService {
     
     @Autowired
-    public PersonaRepository persoRepo;
-    
+    public PersonaRepository persoRepo;    
 
     @Override
-    public List<Persona> verPersona() {
+    public List<Persona> verPersonas() {
         return persoRepo.findAll();
     }
 

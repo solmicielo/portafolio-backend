@@ -21,8 +21,8 @@ public class Experiencia {
     
     // Primary Key ----------------------------------
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     //-----------Atributos----------------------
     @NotNull
@@ -60,7 +60,7 @@ public class Experiencia {
     public Experiencia() {
     }
 
-    public Experiencia(int id, String nombrePuesto, String nombreEmpresa, String descripcion, Date fechaInicio, Date fechaFin, Boolean esTrabajoActual, Long persona) {
+    public Experiencia(Long id, String nombrePuesto, String nombreEmpresa, String descripcion, Date fechaInicio, Date fechaFin, Boolean esTrabajoActual, Long persona) {
         this.id = id;
         this.nombrePuesto = nombrePuesto;
         this.nombreEmpresa = nombreEmpresa;
@@ -70,5 +70,7 @@ public class Experiencia {
         this.esTrabajoActual = esTrabajoActual;
         this.persona = persona;
     }
+
+    
     
 }

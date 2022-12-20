@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class ProyectoController {
     
     @Autowired
@@ -30,19 +31,19 @@ public class ProyectoController {
         return proyectoServ.verProyectos();
     }
     
-    @GetMapping ("/buscar/proyecto")
+    @GetMapping ("/proyecto/buscar/{id}")
     @ResponseBody
     public Proyecto buscarProyecto (@PathVariable Long id) {
         return proyectoServ.buscarProyecto(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/proyecto/delete/{id}")
     public void borrarProyecto (@PathVariable Long id){
         proyectoServ.borrarProyecto(id);
     
     }
     
-    @PutMapping("/editar/{id}")
+    @PutMapping("/proyecto/editar")
     public Proyecto editarProyecto (@RequestBody Proyecto proyecto){  
       
        proyectoServ.editarProyecto(proyecto);

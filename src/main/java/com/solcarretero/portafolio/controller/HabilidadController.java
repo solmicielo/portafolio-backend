@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class HabilidadController {
     
      @Autowired
@@ -30,19 +31,19 @@ public class HabilidadController {
         return habilidadServ.verHabilidades();
     }
     
-    @GetMapping ("/buscar/habilidad")
+    @GetMapping ("/habilidad/buscar/{id}")
     @ResponseBody
     public Habilidad buscarHabilidad (@PathVariable Long id) {
         return habilidadServ.buscarHabilidad(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/habilidad/delete/{id}")
     public void borrarHabilidad (@PathVariable Long id){
         habilidadServ.borrarHabilidad(id);
     
     }
     
-    @PutMapping("/editar/{id}")
+    @PutMapping("/habilidad/editar")
     public Habilidad editarHabilidad (@RequestBody Habilidad habilidad){  
       
        habilidadServ.editarHabilidad(habilidad);

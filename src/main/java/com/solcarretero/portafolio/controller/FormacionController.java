@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class FormacionController {
     
     @Autowired
@@ -30,19 +31,19 @@ public class FormacionController {
         return formacionServ.verFormacion();
     }
     
-    @GetMapping ("/buscar/formacion")
+    @GetMapping ("formacion/buscar/{id}")
     @ResponseBody
     public Formacion buscarFormacion (@PathVariable Long id) {
         return formacionServ.buscarFormacion(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/formacion/delete/{id}")
     public void borrarFormacion (@PathVariable Long id){
         formacionServ.borrarFormacion(id);
     
     }
     
-   @PutMapping("/editar/{id}")
+   @PutMapping("/formacion/editar")
    public Formacion editarFormacion (@RequestBody Formacion formacion){  
       
        formacionServ.editarFormacion(formacion);

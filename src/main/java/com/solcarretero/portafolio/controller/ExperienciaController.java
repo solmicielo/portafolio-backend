@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.solcarretero.portafolio.service.IExperienciaService;
 import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
 public class ExperienciaController {
     
     @Autowired
@@ -30,19 +31,19 @@ public class ExperienciaController {
         return expeServ.verExperiencia();
     }
     
-    @GetMapping ("/buscar/experiencia")
+    @GetMapping ("/experiencia/buscar/{id}")
     @ResponseBody
     public Experiencia buscarExperiencia (@PathVariable Long id) {
         return expeServ.buscarExperiencia(id);
     }
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/experiencia/delete/{id}")
     public void borrarExperiencia (@PathVariable Long id){
         expeServ.borrarExperiencia(id);
     
     }
     
-   @PutMapping("/editar/{id}")
+   @PutMapping("/experiencia/editar")
    public Experiencia editarExperiencia (@RequestBody Experiencia experiencia){  
       
        expeServ.editarExperiencia(experiencia);
