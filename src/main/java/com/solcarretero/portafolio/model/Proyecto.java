@@ -32,7 +32,7 @@ public class Proyecto {
         
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
-    private String urlLiven;
+    private String urlLive;
         
     @NotNull
     @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
@@ -48,11 +48,11 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public Proyecto(Long id, String titulo, String urlImg, String urlLiven, String urlRepositorio, Long persona) {
+    public Proyecto(Long id, String titulo, String urlImg, String urlLive, String urlRepositorio, Long persona) {
         this.id = id;
         this.titulo = titulo;
         this.urlImg = urlImg;
-        this.urlLiven = urlLiven;
+        this.urlLive = urlLive;
         this.urlRepositorio = urlRepositorio;
         this.persona = persona;
     }
