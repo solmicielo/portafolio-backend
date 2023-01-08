@@ -5,6 +5,7 @@ import com.solcarretero.portafolio.model.Formacion;
 import com.solcarretero.portafolio.service.IFormacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class FormacionController {
     @Autowired
     IFormacionService formacionServ;
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PostMapping ("new")
     public void agregarFormacion (@RequestBody Formacion formacion){
         formacionServ.crearFormacion(formacion);
@@ -41,12 +43,14 @@ public class FormacionController {
         return formacionServ.buscarFormacion(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("delete/{id}")
     public void borrarFormacion (@PathVariable Long id){
         formacionServ.borrarFormacion(id);
     
     }
-    
+   
+   @PreAuthorize("hasRole('ADMIN')") 
    @PutMapping("editar")
    public Formacion editarFormacion (@RequestBody Formacion formacion){  
       

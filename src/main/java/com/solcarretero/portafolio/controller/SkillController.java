@@ -5,6 +5,7 @@ import com.solcarretero.portafolio.model.Skill;
 import com.solcarretero.portafolio.service.ISkillService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class SkillController {
     @Autowired
     ISkillService skillServ;
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PostMapping ("new")
     public void agregarSkill (@RequestBody Skill skill){
         skillServ.crearSkill(skill);
@@ -42,12 +44,14 @@ public class SkillController {
         return skillServ.buscarSkill(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @DeleteMapping("delete/{id}")
     public void borrarSkill (@PathVariable Long id){
         skillServ.borrarSkill(id);
     
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PutMapping("editar")
     public Skill editarSkill (@RequestBody Skill skill){  
       

@@ -5,6 +5,7 @@ import com.solcarretero.portafolio.model.Persona;
 import com.solcarretero.portafolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class PersonaController {
     @Autowired
     IPersonaService persoServ;
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PostMapping ("new")
     public void agregarPersona (@RequestBody Persona pers){
         persoServ.crearPersona(pers);
@@ -42,12 +44,13 @@ public class PersonaController {
         return persoServ.buscarPersona(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @DeleteMapping("delete/{id}")
     public void borrarPersona (@PathVariable Long id){
         persoServ.borrarPersona(id);
     
     }
-    
+   @PreAuthorize("hasRole('ADMIN')")  
    @PutMapping("editar")
    public Persona editarPersona (@RequestBody Persona pers){        
        persoServ.editarPersona(pers);       

@@ -5,6 +5,7 @@ import com.solcarretero.portafolio.model.Proyecto;
 import com.solcarretero.portafolio.service.IProyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class ProyectoController {
     @Autowired
     IProyectoService proyectoServ;
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PostMapping ("new")
     public void agregarProyecto (@RequestBody Proyecto proyecto){
         proyectoServ.crearProyecto(proyecto);
@@ -41,12 +43,14 @@ public class ProyectoController {
         return proyectoServ.buscarProyecto(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @DeleteMapping("delete/{id}")
     public void borrarProyecto (@PathVariable Long id){
         proyectoServ.borrarProyecto(id);
     
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PutMapping("editar")
     public Proyecto editarProyecto (@RequestBody Proyecto proyecto){  
       

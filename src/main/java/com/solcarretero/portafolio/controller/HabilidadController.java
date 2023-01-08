@@ -5,6 +5,7 @@ import com.solcarretero.portafolio.model.Habilidad;
 import com.solcarretero.portafolio.service.IHabilidadService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ public class HabilidadController {
      @Autowired
     IHabilidadService habilidadServ;
     
+    @PreAuthorize("hasRole('ADMIN')")  
     @PostMapping ("new")
     public void agregarHabilidad (@RequestBody Habilidad habilidad){
         habilidadServ.crearHabilidad(habilidad);
@@ -41,12 +43,14 @@ public class HabilidadController {
         return habilidadServ.buscarHabilidad(id);
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @DeleteMapping("delete/{id}")
     public void borrarHabilidad (@PathVariable Long id){
         habilidadServ.borrarHabilidad(id);
     
     }
     
+    @PreAuthorize("hasRole('ADMIN')") 
     @PutMapping("editar")
     public Habilidad editarHabilidad (@RequestBody Habilidad habilidad){  
       
