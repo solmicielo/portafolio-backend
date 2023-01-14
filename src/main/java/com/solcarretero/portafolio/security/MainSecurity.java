@@ -68,7 +68,7 @@ return http.build();
 @Override
 public void addCorsMappings(CorsRegistry registry) {
 
-registry.addMapping("auth/login").allowedOrigins("http://localhost:4200/").allowedMethods("*").exposedHeaders("*");
+registry.addMapping("auth/login").allowedOrigins("https://portafolio-solcarretero.web.app/").allowedMethods("*").exposedHeaders("*");
 
 }
  
