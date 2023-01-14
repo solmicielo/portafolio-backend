@@ -60,8 +60,8 @@ public class Experiencia {
     public Experiencia() {
     }
 
-    public Experiencia(Long id, String nombrePuesto, String nombreEmpresa, String descripcion, Date fechaInicio, Date fechaFin, Boolean esTrabajoActual, Long persona) {
-        this.id = id;
+    public Experiencia( String nombrePuesto, String nombreEmpresa, String descripcion, Date fechaInicio, Date fechaFin, Boolean esTrabajoActual, Long persona) {
+        
         this.nombrePuesto = nombrePuesto;
         this.nombreEmpresa = nombreEmpresa;
         this.descripcion = descripcion;

@@ -2,9 +2,12 @@
 package com.solcarretero.portafolio.controller;
 
 import com.solcarretero.portafolio.model.Persona;
+import com.solcarretero.portafolio.security.controller.Mensaje;
 import com.solcarretero.portafolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +31,15 @@ public class PersonaController {
     
     @PreAuthorize("hasRole('ADMIN')") 
     @PostMapping ("new")
-    public void agregarPersona (@RequestBody Persona pers){
-        persoServ.crearPersona(pers);
+    public ResponseEntity agregarPersona (@RequestBody Persona pers){
+        try {
+            persoServ.crearPersona(pers);
+            return new ResponseEntity(pers, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity(new Mensaje("Error: No se ha podido crear el elemento Persona, revise que los campos sean correctos "), HttpStatus.BAD_REQUEST);
+        }
+        
     }
     
     @GetMapping ("ver")
@@ -40,21 +50,55 @@ public class PersonaController {
     
     @GetMapping ("buscar/{id}")
     @ResponseBody
-    public Persona buscarProyecto (@PathVariable Long id) {
-        return persoServ.buscarPersona(id);
+    public ResponseEntity buscarProyecto (@PathVariable Long id) {
+        try {
+            Persona pers = persoServ.buscarPersona(id);
+            if (pers != null) {
+
+                return new ResponseEntity(pers, HttpStatus.OK);
+
+            } else {
+                return new ResponseEntity(new Mensaje("Error: No se ha podido encontrar el elemento Persona  en la Base de Datos "), HttpStatus.NOT_FOUND);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity(new Mensaje("Error: No se ha podido encontrar el elemento Persona  en la Base de Datos "), HttpStatus.NOT_FOUND);
+        }
+        
     }
     
     @PreAuthorize("hasRole('ADMIN')") 
     @DeleteMapping("delete/{id}")
-    public void borrarPersona (@PathVariable Long id){
-        persoServ.borrarPersona(id);
+    public ResponseEntity borrarPersona (@PathVariable Long id){
+        try {
+            persoServ.borrarPersona(id);
+            return new ResponseEntity(new Mensaje("El elemento Persona se Elimino correctamente "), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity(new Mensaje("Error: No se ha podido encontrar el elemento Persona  en la Base de Datos "), HttpStatus.NOT_FOUND);
+        }
+        
     
     }
    @PreAuthorize("hasRole('ADMIN')")  
    @PutMapping("editar")
-   public Persona editarPersona (@RequestBody Persona pers){        
-       persoServ.editarPersona(pers);       
-       return pers;
+   public ResponseEntity editarPersona (@RequestBody Persona pers){   
+       try {
+
+            if (persoServ.buscarPersona(pers.getId()) != null) {
+
+                persoServ.editarPersona(pers);
+                return new ResponseEntity(pers, HttpStatus.OK);
+
+            } else {
+                return new ResponseEntity(new Mensaje("Error: No se ha podido encontrar el elemento Persona  en la Base de Datos "), HttpStatus.NOT_FOUND);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity(new Mensaje("Error: No se ha podido encontrar el elemento Persona  en la Base de Datos "), HttpStatus.NOT_FOUND);
+        }
+              
+       
        
    }   
     

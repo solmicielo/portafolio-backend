@@ -40,7 +40,7 @@ public class Persona {
     private String sobre_mi;
     
     @NotNull
-    @Size(min = 1, max= 200, message = "Debe tener entre 1 y 200 caracteres")
+    @Size(min = 1, message = "Debe tener entre 1 y 255 caracteres")
     private String url_foto; 
         
     @NotNull

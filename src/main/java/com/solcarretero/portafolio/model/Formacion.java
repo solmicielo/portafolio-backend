@@ -26,7 +26,7 @@ public class Formacion {
     // Primary Key ----------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long id;
+    private Long id;
     
     //-----------Atributos----------------------
     @NotNull
@@ -63,8 +63,8 @@ public class Formacion {
     public Formacion() {
     }
 
-    public Formacion(Long id, String nombreEstudio, String nombreAcademia, String descripcion, Date fechaInicio, Date fechaFin, Boolean estasCursando, Long persona) {
-        this.id = id;
+    public Formacion( String nombreEstudio, String nombreAcademia, String descripcion, Date fechaInicio, Date fechaFin, Boolean estasCursando, Long persona) {
+        
         this.nombreEstudio = nombreEstudio;
         this.nombreAcademia = nombreAcademia;
         this.descripcion = descripcion;
