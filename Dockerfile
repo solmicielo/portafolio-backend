@@ -1,7 +1,15 @@
-FROM amazoncorretto:17-alpine-jdk
+FROM openjdk:17-jdk-slim-buster
 
-MAINTAINER SolCarretero
+MAINTAINER solcarretero
 
-COPY target/portafolio-0.0.1-SNAPSHOT  sol-portafolio.jar
+COPY target/portafolio-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT ["java","-jar","/sol-portafolio.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+
+
+
+
+
+
